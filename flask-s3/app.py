@@ -18,6 +18,13 @@ def get():
     # Get a list of all bucket names from the response
     buckets = [bucket['Name'] for bucket in response['Buckets']]
     # Print out the bucket list
+    try:
+        cw_metric = cloudwatch_metric('ListBucketSuccess', 'Count')
+        print("cloudwatch_response" + cw_metric)
+    finally:
+        return ("The bucket has been created on s3 named : " + bucket['name'])
+    
+    
     return ("Bucket List: %s" % buckets)
  
 @app.route("/s3", methods = ['POST'])

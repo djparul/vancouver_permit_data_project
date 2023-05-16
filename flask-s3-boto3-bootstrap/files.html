@@ -1,0 +1,34 @@
+{% extends "bootstrap/base.html" %}
+{% block html_attribs %} lang="en"
+{% block title %}S3 object list{% endblock %}
+
+{% block navbar %}
+<div class="navbar navbar-fixed-top">
+  <!-- ... -->
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12-xs">
+            <h3>Bucket Info</h3>
+            <p>Created: {{ my_bucket.creation_date }}</p>
+            <hr>
+
+            <table class="table table-striped">
+                <tr>
+                    <th>Filename</th>
+                    <th>Last Modified</th>
+                </tr>
+                {% for f in files %}
+                <tr>
+                    <td>{{ f.key }}</td>
+                    <td>{{ f.last_modified }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+          </div>
+      </div>
+  </div>
+{% endblock %}
